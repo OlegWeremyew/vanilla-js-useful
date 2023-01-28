@@ -3,19 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://github.com/OlegWeremyew/WebsiteNumber_1",
+  "homepage": "https://github.com/OlegWeremyew/vanilla-js-useful",
   "scripts": {
     "deploy": "gh-pages -d src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OlegWeremyew/WebsiteNumber_1.git"
+    "url": "git+https://github.com/OlegWeremyew/vanilla-js-useful.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OlegWeremyew/WebsiteNumber_1/issues"
+    "url": "https://github.com/OlegWeremyew/vanilla-js-useful/issues"
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
