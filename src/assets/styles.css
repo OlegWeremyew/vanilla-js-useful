@@ -1,0 +1,16 @@
+.features {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature__item {
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin: 5px 0;
+}
+
+.feature__item:hover {
+    color: #3d4eba;
+    text-decoration: underline;
+}
