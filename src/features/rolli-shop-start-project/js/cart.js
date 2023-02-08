@@ -61,5 +61,11 @@ window.addEventListener("click", (event) => {
     //сбрасываем счётчик после добавления
     card.querySelector('[data-counter]').innerText = '1'
 
+    //убираем блок с описанием что корзина пуста
+    toggleCartStatus()
+
+    //считаем общую стоимость товров в корзине
+    calcCartPriceAndDelivery()
+
   }
 })
