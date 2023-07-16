@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<button onclick="alert('Oleg')">Click</button>
+<button onclick="alert(this.value)" value="test">This</button>
+<button class="btn">Click 2</button>
+<button class="btn-this" value="test">This 2</button>
+<button onclick="addText()"  value="test">AddText</button>
+<button class="btn-this-add" value="test">AddText 2</button>
+<button class="listener" value="test">listener</button>
+
+<script>
+  document.querySelector('.btn').onclick = function(){
+    alert('oleg 2')
+  }
+
+  document.querySelector('.btn-this').onclick = function(){
+    alert(this.innerHTML)
+  }
+
+  function addText(){
+    alert("add text")
+  }
+
+  document.querySelector('.btn-this-add').onclick = addText
+
+  function addText1(){
+    alert("add text1")
+  }
+
+  function addText2(){
+    alert("add text2")
+  }
+
+  function addText3(){
+    alert("add text3")
+  }
+
+  const listener = document.querySelector('.listener')
+
+  listener.addEventListener('click', addText1)
+  listener.addEventListener('click', addText2)
+  listener.addEventListener('click', addText3)
+
+  listener.addEventListener('click', addText2)
+</script>
+</body>
+</html>

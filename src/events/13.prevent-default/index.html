@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--inline disable linc redirect method 1-->
+<a href="redirect.html" onclick="return false">redirect</a>
+
+<!--inline disable linc redirect method 2-->
+<a href="redirect.html" onclick="event.preventDefault()">redirect 2</a>
+<a id="link" href="redirect.html">redirect 3</a>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad blanditiis ducimus, fuga sint unde.</p>
+
+<button id="elem">button</button>
+
+<a href="https://www.google.com">google</a>
+
+<script>
+  link.onclick = function (e) {
+    e.preventDefault()
+  }
+
+  elem.oncontextmenu = function (e) {
+    e.preventDefault()
+    alert('button context')
+  }
+
+  document.oncontextmenu = function (e) {
+    if (e.defaultPrevented) return
+    e.preventDefault()
+    alert('document context')
+  }
+
+  document.body.onclick = function (e) {
+    function handleLink(href) {
+      let isLeaving = confirm(`go to ${href}`)
+      if (!isLeaving) return false
+    }
+
+    let target = e.target.closest('a')
+
+    if (target && document.body.contains(target)) {
+      return handleLink(target.getAttribute('href'))
+    }
+
+  }
+</script>
+
+</body>
+</html>

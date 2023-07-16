@@ -1,0 +1,12 @@
+table {
+  border-spacing: 0;
+}
+
+td {
+  margin: 0;
+  border: 1px solid black;
+}
+
+.bgc {
+  background-color: red;
+}

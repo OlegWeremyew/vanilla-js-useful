@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur deleniti eligendi molestiae perferendis
+	voluptatem. Accusantium iste odio ut? Aliquam, at eos et explicabo incidunt iure minus non perspiciatis quos
+	vitae.
+</p>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur deleniti eligendi molestiae perferendis
+	voluptatem. Accusantium iste odio ut? Aliquam, at eos et explicabo incidunt iure minus non perspiciatis quos
+	vitae.
+</p>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur deleniti eligendi molestiae perferendis
+	voluptatem. Accusantium iste odio ut? Aliquam, at eos et explicabo incidunt iure minus non perspiciatis quos
+	vitae.
+</p>
+
+<button data-tooltip="long text with hint">Button 1</button>
+<button data-tooltip="hint with<br> HTML tags">Button 2</button>
+<script>
+  let tooltipElem;
+  document.onmouseover = function (e) {
+    let target = e.target
+    let tooltipHTML = target.dataset.tooltip
+
+    if (!tooltipHTML) return
+
+    tooltipElem = document.createElement('div')
+    tooltipElem.className = 'tooltip'
+    tooltipElem.innerHTML = tooltipHTML
+    document.body.append(tooltipElem)
+
+    let coords = target.getBoundingClientRect()
+
+    let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2
+    if (left < 0) left = 5
+
+    let top = coords.top - tooltipElem.offsetHeight - 10
+    if (top < 0) top = coords.top + target.offsetHeight + 5
+
+    tooltipElem.style.left = `${left}px`
+    tooltipElem.style.top = `${top}px`
+
+  }
+
+  document.onmouseout = function (e) {
+    if (tooltipElem) {
+      tooltipElem.remove()
+      tooltipElem = null
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button data-toggle-id="email">
+	show/hide email
+</button>
+
+<form id="email" hidden>
+	Email: <input type="email">
+</form>
+
+<button data-toggle-id="password">
+	show/hide password
+</button>
+
+<form id="password" hidden>
+	Password: <input type="password">
+</form>
+
+<script>
+	document.addEventListener('click', function (e){
+    let id = e.target.dataset.toggleId
+		if(!id) return
+
+		let el = document.getElementById(id)
+    el.hidden = !el.hidden
+	})
+</script>
+
+</body>
+</html>

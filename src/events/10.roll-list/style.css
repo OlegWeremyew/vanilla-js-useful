@@ -1,0 +1,11 @@
+ul {
+  cursor: pointer;
+  list-style: none;
+  max-width: 320px;
+}
+
+li {
+  padding: 7px 14px;
+  color: #fff;
+  background-color: rgb(59, 115, 161);
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="light.css" id="theme">
+</head>
+<body>
+<div class="container">
+	<h4>Dark theme</h4>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet, consequuntur culpa dicta dolor, dolore dolorum
+		eveniet explicabo harum hic ipsa itaque iure magnam mollitia nam natus placeat quisquam rem reprehenderit sit,
+		soluta tenetur voluptatem. Autem, commodi, eaque earum error fugiat illo illum ipsam minus mollitia qui, quia
+		repellat voluptas.
+	</p>
+	<label>
+		Enable dark theme
+		<input type="checkbox" class="theme-checkbox">
+	</label>
+</div>
+
+<script>
+  const checkbox = document.querySelector('.theme-checkbox')
+
+  if (localStorage.getItem('theme') === 'true') {
+    theme.setAttribute('href', 'dark.css')
+    checkbox.checked = true
+  } else {
+    theme.setAttribute('href', 'light.css')
+    checkbox.checked = false
+  }
+
+  checkbox.onchange = function () {
+    if (this.checked) {
+      localStorage.setItem('theme', true)
+      theme.setAttribute('href', 'dark.css')
+      return
+    }
+
+    localStorage.setItem('theme', false)
+    theme.setAttribute('href', 'light.css')
+  }
+
+</script>
+</body>
+</html>

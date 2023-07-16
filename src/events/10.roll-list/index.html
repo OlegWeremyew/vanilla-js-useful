@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+  const data = {
+    "Овощи": {
+      "огурцы": 5,
+      "помидоры": 3,
+    },
+    "Фрукты": {
+      "Крсатн": {
+        "огурцы": 15,
+        "помидоры": 13,
+      },
+      "Зелен": {
+        "огурцы": 25,
+        "помидоры": 23,
+      }
+    }
+  }
+
+  function createTree(container, obj) {
+    document.querySelector(container).append(createUl(obj))
+  }
+
+  function createUl(obj) {
+    if (!Object.keys(obj).length) return
+
+    let ul = document.createElement('ul')
+
+    for (const key in obj) {
+      let li = document.createElement('li')
+
+      if (!isNaN(obj[key])) {
+        li.textContent = key + ` ${obj[key]}`
+      } else {
+        li.textContent = key
+      }
+
+      let childrenUl = createUl(obj[key])
+      if (childrenUl) {
+        li.append(childrenUl)
+      }
+      ul.append(li)
+    }
+
+    return ul
+  }
+
+  createTree('body', data)
+
+  let ul = document.querySelector('ul')
+
+  for (let li of ul.querySelectorAll('li')) {
+    let span = document.createElement('span')
+    li.prepend(span)
+    span.append(span.nextSibling)
+  }
+
+  ul.onclick = function (event) {
+    if (event.target.tagName !== 'SPAN') return
+    console.log(event.target.tagName)
+
+    let childrenContainer = event.target.parentNode.querySelector('ul')
+
+    if (!childrenContainer) return;
+
+    childrenContainer.hidden = !childrenContainer.hidden
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="slider">
+	<div  class="slider__image">
+		<img src="./img/1.jpg" alt="img">
+	</div>
+</div>
+<div class="slider__breadcrumbs">
+	<button class="slider__item active">1</button>
+	<button class="slider__item">2</button>
+	<button class="slider__item">3</button>
+	<button class="slider__item">4</button>
+	<button class="slider__item">5</button>
+	<button class="slider__item">6</button>
+	<button class="slider__item">7</button>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.slider__item')
+  for (const button of buttons) {
+    button.onclick = function () {
+      document.querySelector('.slider__breadcrumbs .active').classList.remove('active')
+
+	    this.classList.add('active')
+	    //alternative
+      //button.classList.add('active')
+
+      document.querySelector('.slider__image img').setAttribute('src', `./img/${this.innerHTML}.jpg`)
+      //alternative
+      //document.querySelector('.slider__image img').setAttribute('src', `../img/${button.innerHTML}.jpg`)
+    }
+  }
+
+</script>
+</body>
+</html>
