@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bgc" style="width: 150px; height: 150px"></div>
+
+<button>button</button>
+
+<div id="double">double click</div>
+
+<script>
+  document.querySelector('.bgc').addEventListener('mousedown', function (e) {
+    switch (e.which) {
+      case 1 :
+        console.log('left');
+        break;
+      case 2 :
+        console.log('middle')
+        break;
+      case 3 :
+        console.log('right')
+        break;
+    }
+  })
+
+  document.querySelector('button').onclick = function (e) {
+    if (e.altKey && e.shiftKey) {
+      console.log('altKey shiftKey')
+    }
+
+    if (e.ctrlKey && e.shiftKey) {
+      console.log('ctrlKey shiftKey')
+    }
+
+    //for mackOS
+    if (e.metaKey && e.shiftKey) {
+      console.log('metaKey shiftKey')
+    }
+  }
+
+
+  //disable text selection
+  document.getElementById('double').addEventListener('dblclick', function (e) {
+    console.log('double')
+  })
+
+  document.getElementById('double').addEventListener('mousedown', function (e) {
+    e.preventDefault()
+  })
+</script>
+
+</body>
+</html>

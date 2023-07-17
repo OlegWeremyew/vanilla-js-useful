@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<p class="copy">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi assumenda at blanditiis debitis delectus doloremque,
+	dolorum ducimus earum enim eos est eveniet expedita fuga fugiat fugit iure iusto libero magnam molestiae mollitia
+	nobis non nostrum provident quae quia rem reprehenderit, sed sequi soluta suscipit tempore ullam unde vero voluptas
+	voluptatum!
+</p>
+<textarea name="text" id="text" cols="30" rows="10"></textarea>
+
+<ul id="list">
+	<li class="list-item">Item 1</li>
+	<li class="list-item">Item 2</li>
+	<li class="list-item">Item 3</li>
+	<li class="list-item">Item 4</li>
+	<li class="list-item">Item 5</li>
+	<li class="list-item">Item 6</li>
+	<li class="list-item">Item 7</li>
+</ul>
+
+<script>
+  document.querySelector('.copy').oncopy = function (e) {
+    //stop copy event
+    e.preventDefault()
+  }
+
+  const list = document.getElementById('list')
+
+  list.onclick = function (e) {
+    if (e.target.tagName !== "LI") return
+
+    if (e.ctrlKey || e.metaKey) {
+      toggleSelect(e.target)
+    } else {
+      singleSelect(e.target)
+    }
+
+    function toggleSelect(li) {
+      li.classList.toggle('bgc')
+    }
+
+    function singleSelect(li) {
+      for (const liElem of list.querySelectorAll('.bgc')) {
+        liElem.classList.remove('bgc')
+      }
+
+      li.classList.toggle('bgc')
+    }
+  }
+
+  list.onmousedown = function (e) {
+    return false
+  }
+</script>
+
+</body>
+</html>

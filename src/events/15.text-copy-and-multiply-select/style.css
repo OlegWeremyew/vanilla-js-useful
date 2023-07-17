@@ -1,0 +1,11 @@
+.list-item {
+  width: 400px;
+  padding: 20px;
+  background-color: #4078e0;
+  list-style: none;
+  color: #fff;
+}
+
+.bgc {
+  background-color: greenyellow;
+}
