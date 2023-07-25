@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form name="form1">
+	<input type="text" name="input1" value="1">
+	<input type="text" name="input2" value="2">
+	<input type="radio" name="radioBtn" value="btn1" checked>
+	<input type="radio" name="radioBtn" value="btn2">
+	<input type="radio" name="radioBtn" value="btn3">
+
+	<fieldset name="myFieldset">
+		<legend>Title</legend>
+		<input name="password" type="password">
+	</fieldset>
+
+	<select name="mySelect">
+		<option value="item1" selected>Element 1</option>
+		<option value="item2">Element 2</option>
+		<option value="item3">Element 3</option>
+		<option value="item4">Element 4</option>
+	</select>
+
+	<select name="mySelect2" multiple>
+		<option value="item5" selected>Element 5</option>
+		<option value="item6" selected>Element 6</option>
+		<option value="item7">Element 7</option>
+		<option value="item8">Element 8</option>
+	</select>
+</form>
+
+<script>
+  const form = document.forms.form1
+
+  const radioBtns = form.elements.radioBtn
+  //console.log(radioBtns)
+
+
+  const fieldset = form.elements.myFieldset
+  //console.log(fieldset)
+
+
+  const mySelect = form.elements.mySelect
+  // console.log(mySelect.options[0].value)
+  // console.log(mySelect.options[0].selected)
+
+  //способы установки активного селекта
+  mySelect.selectedIndex = 1
+  mySelect.options[2].selected = true
+  mySelect.value = 'item4'
+
+
+  const mySelect2 = form.elements.mySelect2
+  const selected = Array
+	  .from(mySelect2.options)
+	  .filter((option) => option.selected)
+	  .map((option) => option.value)
+  //console.log(selected)
+
+  //добавление нового опшина в селект
+  const newOpt = new Option("Element 9", "item9", true)
+  mySelect2.append(newOpt)
+  console.log(mySelect2)
+</script>
+</body>
+</html>

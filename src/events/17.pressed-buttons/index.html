@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+  // document.addEventListener('keyup', (event) => {
+  //   console.log(event.key)
+  //   console.log(event.code)
+  //   console.log(event.keyCode)
+  // })
+	//
+  // document.addEventListener('keydown', (event) => {
+  //   if (event.code === "KeyZ" && (event.ctrlKey || event.metaKey)) {
+  //     console.log("Z + ctrl")
+  //   }
+  // })
+
+  function hotKeys(func, ...codes) {
+    let pressed = new Set()
+
+    document.addEventListener('keydown', function (e) {
+      pressed.add(e.code)
+      for (let code of codes) {
+        if (!pressed.has(code)) {
+          return
+        }
+      }
+
+      pressed.clear()
+      func()
+
+      document.addEventListener('keyup', function (e) {
+        pressed.delete(e.code)
+      })
+    })
+  }
+
+  hotKeys(function (){
+    console.log('was pressed F + G')
+  }, 'KeyF', 'KeyG')
+
+  hotKeys(function (){
+    console.log('was pressed T+ R')
+  }, 'KeyT', 'KeyR')
+</script>
+
+</body>
+</html>
