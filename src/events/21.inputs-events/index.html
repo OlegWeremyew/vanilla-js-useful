@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<input type="text" id="input">
+
+<script>
+	const INPUT = document.getElementById('input')
+
+  INPUT.oncut = INPUT.oncopy = INPUT.onpaste = function (e){
+    console.log(e.type + '  -  ' + e.clipboardData.getData('text/plain'))
+	  return false
+  }
+</script>
+
+</body>
+</html>
