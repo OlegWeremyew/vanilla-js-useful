@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+	const params = new URLSearchParams(window.location.search)
+  console.dir(params.toString())
+  console.dir(params.has('_ijt'))
+  console.dir(params.get('_ijt'))
+  params.set('_ijt', '12')
+  console.dir(params.toString())
+  console.dir(params.get('_ijt'))
+  params.append('oleg', "middle")
+  console.dir(params.toString())
+  console.dir(params.get('oleg'))
+  params.delete('_ijt')
+  console.dir(params.toString())
+  console.dir(params.has('_ijt'))
+
+  const url = new URL("test", 'https://ai-arta.com')
+  url.searchParams.append("oleg", "test")
+  url.port = "8080"
+  console.dir(url)
+
+	const queries = {
+    "oleg" : 29,
+		"diana": 'cat'
+	}
+
+  const url2 = new URLSearchParams(queries)
+  console.dir(url2.toString())
+
+
+</script>
+
+</body>
+</html>
