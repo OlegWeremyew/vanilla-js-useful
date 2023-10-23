@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RegExp</title>
+</head>
+<body>
+<a href="">+375(29)841-39-53</a>
+<script>
+
+  let str = document.querySelector('a').textContent
+  let regexp = /\d/g
+  let number = str.match(regexp).join('')
+
+  document.querySelector('a').setAttribute('href', `tel:+${number}`)
+</script>
+</body>
+</html>
