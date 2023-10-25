@@ -7,15 +7,35 @@ function bytesToSize(bytes) {
   return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i]
 }
 
+const element = (tag, classes = [], content) => {
+  const node = document.createElement(tag)
+
+  if (classes.length) {
+    node.classList.add(...classes)
+  }
+
+  if (content) {
+    node.textContent = content
+  }
+
+  return node
+}
+
+const noop = () => {
+}
+
 export function upload(selector, options = {}) {
+  let files = []
+
+  const onUpload = options.onUpload ?? noop
+
   const input = document.querySelector(selector)
-  const preview = document.createElement('div')
+  const preview = element('div', ['preview'])
 
-  preview.classList.add('preview')
+  const open = element('button', ['btn'], 'Open')
 
-  const open = document.createElement('button')
-  open.classList.add('btn')
-  open.textContent = 'Open'
+  const upload = element('button', ['btn', 'primary'], 'Upload')
+  upload.style.display = 'none'
 
   if (options.multi) {
     input.setAttribute('multiple', true)
@@ -25,6 +45,7 @@ export function upload(selector, options = {}) {
     input.setAttribute('accept', options.accept.join(','))
   }
 
+  input.insertAdjacentElement('afterend', upload)
   input.insertAdjacentElement('afterend', open)
   input.insertAdjacentElement('afterend', preview)
 
@@ -33,17 +54,17 @@ export function upload(selector, options = {}) {
   const changeHandler = (event) => {
     if (!event.target.files.length) return
 
-    const files = [...event.target.files]
-
+    files = [...event.target.files]
     preview.innerHTML = null
+    upload.style.display = 'inline'
 
     files.forEach((file) => {
       if (!file.type.match('image')) return
 
       const reader = new FileReader()
 
-      reader.onload = ev => {
-        const src = ev.target.result
+      reader.onload = event => {
+        const src = event.target.result
         preview.insertAdjacentHTML('afterbegin', `
           <div class="preview-image">
             <div class="preview-remove" data-name="${file.name}">&times;</div>
@@ -60,6 +81,46 @@ export function upload(selector, options = {}) {
     })
   }
 
+  const removeHandler = (event) => {
+    if (!event.target?.dataset?.name) return
+
+    const {name} = event.target.dataset
+    files.filter((file) => file.name !== name)
+
+    if (!files.length) {
+      upload.style.display = 'none'
+    }
+
+    const deletedBlock = preview
+      .querySelector(`[data-name="${name}"]`)
+      .closest(".preview-image")
+
+    deletedBlock.classList.add('removing')
+
+    setTimeout(() => {
+      deletedBlock.remove()
+    }, 300)
+  }
+
+  const clearPreview = (el) => {
+    el.style.bottom = '4px'
+    el.innerHTML = `<div class="preview-info-progress"></div>`
+  }
+
+  const uploadHandler = () => {
+    preview
+      .querySelectorAll('.preview-remove')
+      .forEach((element) => {
+        element.remove()
+    })
+
+    const previewInfo = preview.querySelectorAll('.preview-info')
+    previewInfo.forEach(clearPreview)
+    onUpload(files)
+  }
+
   open.addEventListener('click', triggerInput)
   input.addEventListener('change', changeHandler)
+  preview.addEventListener('click', removeHandler)
+  upload.addEventListener('click', uploadHandler)
 }
